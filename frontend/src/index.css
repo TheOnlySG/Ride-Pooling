@@ -1,61 +1,61 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #F3F2EF;
-  --color-surface: #FAF9F6;
-  --color-surface-dim: #F3F2EF;
+  --color-background: #F6F6F6;
+  --color-surface: #FFFFFF;
+  --color-surface-dim: #F3F3F3;
   --color-surface-bright: #FFFFFF;
   --color-surface-container-lowest: #FFFFFF;
-  --color-surface-container-low: #FAF9F6;
-  --color-surface-container: #F2EFEB;
-  --color-surface-container-high: #E8E5DF;
-  --color-surface-container-highest: #DDD9D0;
-  --color-surface-variant: #EAE8E3;
+  --color-surface-container-low: #F8F8F8;
+  --color-surface-container: #EEEEEE;
+  --color-surface-container-high: #E2E2E2;
+  --color-surface-container-highest: #D8D8D8;
+  --color-surface-variant: #E8E8E8;
 
-  --color-on-surface: #292B29;
-  --color-on-surface-variant: #686B66;
-  --color-inverse-surface: #30312F;
-  --color-inverse-on-surface: #F6F5F1;
+  --color-on-surface: #000000;
+  --color-on-surface-variant: #545454;
+  --color-inverse-surface: #141414;
+  --color-inverse-on-surface: #FFFFFF;
 
-  --color-outline: #898B84;
-  --color-outline-variant: #DCDAD4;
-  --color-border: #DCDAD4;
+  --color-outline: #8F8F8F;
+  --color-outline-variant: #E2E2E2;
+  --color-border: #E2E2E2;
 
-  --color-primary: #858C7B;
-  --color-primary-container: #737A69;
+  --color-primary: #000000;
+  --color-primary-container: #141414;
   --color-on-primary: #FFFFFF;
-  --color-on-primary-container: #232720;
-  --color-primary-fixed: #858C7B;
-  --color-primary-fixed-dim: #737A69;
+  --color-on-primary-container: #FFFFFF;
+  --color-primary-fixed: #000000;
+  --color-primary-fixed-dim: #272727;
   --color-on-primary-fixed: #FFFFFF;
-  --color-on-primary-fixed-variant: #2A3025;
+  --color-on-primary-fixed-variant: #E0E0E0;
 
-  --color-accent: #858C7B;
-  --color-accent-hover: #737A69;
-  --color-accent-subtle: #E5E8DF;
-  --color-accent-text: #343B30;
+  --color-accent: #05A357;
+  --color-accent-hover: #048848;
+  --color-accent-subtle: #E6F6EE;
+  --color-accent-text: #025C31;
 
-  --color-dark-surface: #30312F;
-  --color-dark-surface-elevated: #3A3C38;
-  --color-dark-text: #F6F5F1;
-  --color-dark-text-muted: #A3A69D;
-  --color-dark-border: #424440;
+  --color-dark-surface: #141414;
+  --color-dark-surface-elevated: #1F1F1F;
+  --color-dark-text: #FFFFFF;
+  --color-dark-text-muted: #A0A0A0;
+  --color-dark-border: #2E2E2E;
 
-  --color-secondary: #686B66;
-  --color-secondary-container: #EAE8E3;
-  --color-on-secondary: #292B29;
-  --color-on-secondary-container: #343B30;
+  --color-secondary: #545454;
+  --color-secondary-container: #F3F3F3;
+  --color-on-secondary: #000000;
+  --color-on-secondary-container: #141414;
 
-  --color-tertiary: #9E7B5B;
-  --color-tertiary-container: #EFE6DD;
+  --color-tertiary: #276EF1;
+  --color-tertiary-container: #EBF2FE;
   --color-on-tertiary: #FFFFFF;
-  --color-on-tertiary-container: #472D18;
-  --color-tertiary-fixed-dim: #8F6C4C;
+  --color-on-tertiary-container: #0C3B99;
+  --color-tertiary-fixed-dim: #1C51B9;
 
-  --color-error: #A84E4A;
-  --color-error-container: #FBEAEA;
+  --color-error: #E11900;
+  --color-error-container: #FFEAE6;
   --color-on-error: #FFFFFF;
-  --color-on-error-container: #5C1C19;
+  --color-on-error-container: #7A0B00;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -65,8 +65,8 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #F3F2EF;
-    color: #292B29;
+    background-color: #F6F6F6;
+    color: #000000;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'tnum' 1;
     overscroll-behavior: none;
@@ -86,67 +86,67 @@
   }
 }
 
-/* Custom Typography Classes as per DESIGN.md */
+/* Custom Typography Classes as per Uber natural aesthetic */
 .font-label-mono {
   font-family: 'Inter', monospace, sans-serif;
   font-size: 11px;
   line-height: 14px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   font-weight: 600;
 }
 
 .text-label-mono {
   font-size: 11px;
   line-height: 14px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 }
 
 .font-headline-xl {
-  font-size: 36px;
-  line-height: 40px;
-  letter-spacing: -0.03em;
-  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 .font-headline-xl-mobile {
-  font-size: 28px;
-  line-height: 32px;
-  letter-spacing: -0.025em;
-  font-weight: 600;
+  font-size: 26px;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 .font-headline-lg {
-  font-size: 24px;
-  line-height: 28px;
-  letter-spacing: -0.02em;
-  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: -0.015em;
+  font-weight: 700;
 }
 
 .font-headline-md {
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: -0.015em;
-  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
 }
 
 .font-body-lg {
   font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.005em;
+  font-weight: 500;
 }
 
 .font-body-md {
   font-size: 14px;
   line-height: 20px;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   font-weight: 400;
 }
 
 .font-body-sm {
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 0em;
+  letter-spacing: 0;
   font-weight: 400;
 }
 
@@ -154,12 +154,12 @@
   font-size: 13px;
   line-height: 16px;
   letter-spacing: 0.01em;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Leaflet Container Dark Theme Customization */
 .leaflet-container {
-  background-color: #0e0e13 !important;
+  background-color: #121212 !important;
   font-family: 'Inter', sans-serif !important;
   z-index: 0;
   position: relative;
@@ -170,8 +170,8 @@
 }
 
 .leaflet-control-attribution {
-  background: rgba(19, 19, 24, 0.75) !important;
-  color: #85948d !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: #A0A0A0 !important;
   font-size: 9px !important;
   border-radius: 4px;
   margin: 4px !important;
@@ -179,7 +179,7 @@
 }
 
 .leaflet-control-attribution a {
-  color: #bacac2 !important;
+  color: #FFFFFF !important;
 }
 
 /* Radar pulse animation */
@@ -200,28 +200,28 @@
 
 /* Leaflet Dark Tooltips & Popups */
 .leaflet-dark-tooltip {
-  background-color: #1b1b20 !important;
-  color: #e4e1e9 !important;
-  border: 1px solid #35343a !important;
+  background-color: #1F1F1F !important;
+  color: #FFFFFF !important;
+  border: 1px solid #333333 !important;
   border-radius: 6px !important;
   padding: 4px 8px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 .leaflet-dark-tooltip::before {
-  border-top-color: #35343a !important;
+  border-top-color: #333333 !important;
 }
 
 .leaflet-popup-content-wrapper {
-  background: #1b1b20 !important;
-  color: #e4e1e9 !important;
+  background: #1F1F1F !important;
+  color: #FFFFFF !important;
   border-radius: 12px !important;
-  border: 1px solid #35343a !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid #333333 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
 }
 
 .leaflet-popup-tip {
-  background: #1b1b20 !important;
+  background: #1F1F1F !important;
 }
 
 /* Utility to hide native scrollbars while preserving full scrollability */
