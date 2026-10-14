@@ -31,7 +31,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('pool'); // 'pool' | 'journey' | 'fairness' | 'routes' | 'stats' | 'fleet'
   const [poolStage, setPoolStage] = useState('request'); // 'request' | 'matching' | 'active'
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-  const [activeModalTab, setActiveModalTab] = useState('controls'); // 'controls' | 'gate' | 'diff' | 'traffic' | 'distance' | 'alerts' | 'arena'
+  const [activeModalTab, setActiveModalTab] = useState('controls');
   const modalScrollRef = useRef(null);
 
   const [isEvaluatingGate, setIsEvaluatingGate] = useState(false);
@@ -91,7 +91,6 @@ export default function App() {
         if (state && mounted) {
           setBackendState(state);
 
-          // If we have an active ride request, check if a vehicle was assigned
           if (activeRideRequest && state.vehicles) {
             const v = state.vehicles.find((veh) =>
               (veh.onboard || []).includes(activeRideRequest.id) ||
@@ -103,7 +102,7 @@ export default function App() {
           }
         }
       } else {
-        setBackendStatus('Simulation Mode (Standalone)');
+        setBackendStatus('Simulation Mode');
       }
     }
 
@@ -115,7 +114,6 @@ export default function App() {
     };
   }, [activeRideRequest]);
 
-  // Load modal data when modal opens
   useEffect(() => {
     if (!showSettingsModal) return;
     fetchTrafficStatus().then((t) => t && setTrafficMode(t.mode));
@@ -123,19 +121,18 @@ export default function App() {
     fetchFraudAlerts().then((a) => a && setFraudAlerts(a));
   }, [showSettingsModal]);
 
-  // Header Title calculation
   const getHeaderTitle = () => {
     if (activeTab === 'pool') {
-      if (poolStage === 'request' || poolStage === 'matching') return 'Active Ride Tracking';
-      return 'Live Pool';
+      if (poolStage === 'request' || poolStage === 'matching') return 'Ride Booking';
+      return 'Uber PoolIQ';
     }
-    if (activeTab === 'journey') return 'My Shared Journey';
+    if (activeTab === 'journey') return 'Your Activity';
     if (activeTab === 'fairness') return 'Fairness Vault';
-    if (activeTab === 'routes') return 'Busy Road Network';
-    if (activeTab === 'stats') return 'Efficiency Hub';
+    if (activeTab === 'routes') return 'Busy Corridors';
+    if (activeTab === 'stats') return 'Analytics';
     if (activeTab === 'fleet') return 'Fleet Telemetry';
     if (activeTab === 'dispatch') return 'Dispatch Operations';
-    return 'pool-IQ';
+    return 'Uber PoolIQ';
   };
 
   const handleHeaderBack = () => {
@@ -233,8 +230,8 @@ export default function App() {
   };
 
   return (
-    <div className="bg-surface text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
-      {/* Fixed Top Header */}
+    <div className="bg-[#F6F6F6] text-black min-h-screen flex flex-col antialiased selection:bg-black selection:text-white">
+      {/* Top Header */}
       <Header
         title={getHeaderTitle()}
         showBack={activeTab === 'pool' && poolStage !== 'request'}
@@ -297,38 +294,38 @@ export default function App() {
         userRole={userRole}
       />
 
-      {/* Settings / Engine Telemetry & Controls Modal */}
+      {/* Telemetry Modal */}
       {showSettingsModal && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 bg-black/85 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 bg-black/60 backdrop-blur-xs animate-fade-in">
           <div
             ref={modalScrollRef}
-            className="w-full max-w-2xl lg:max-w-3xl bg-surface-container rounded-2xl p-4 md:p-5 border border-surface-container-high shadow-2xl flex flex-col gap-3.5 max-h-[90vh] overflow-y-auto"
+            className="w-full max-w-2xl bg-white rounded-2xl p-4 md:p-5 border border-[#E2E2E2] shadow-2xl flex flex-col gap-4 max-h-[90vh] overflow-y-auto"
           >
-            <div className="flex items-center justify-between border-b border-surface-container-high pb-2">
+            <div className="flex items-center justify-between border-b border-[#E2E2E2] pb-3">
               <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-[22px]">tune</span>
-                <h3 className="font-headline-md text-headline-md font-semibold text-on-surface">
-                  Engine Telemetry &amp; Controls
+                <span className="material-symbols-outlined text-black text-[22px]">tune</span>
+                <h3 className="text-base font-bold text-black">
+                  Engine Controls & Telemetry
                 </h3>
               </div>
               <button
                 onClick={() => setShowSettingsModal(false)}
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container-high cursor-pointer transition-colors"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-[#545454] hover:bg-[#F3F3F3] cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
             {/* Modal Navigation Tabs */}
-            <div className="w-full border-b border-surface-container-high pb-1">
-              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1">
+            <div className="w-full border-b border-[#E2E2E2] pb-2">
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
                 {[
                   { id: 'controls', label: 'Controls' },
-                  { id: 'gate', label: 'USP 1 · Trust Gate' },
-                  { id: 'diff', label: 'USP 2 · Route Diff' },
+                  { id: 'gate', label: 'Trust Gate' },
+                  { id: 'diff', label: 'Route Diff' },
                   { id: 'traffic', label: 'Traffic' },
                   { id: 'distance', label: 'Distance' },
-                  { id: 'alerts', label: 'GPS Alerts' },
+                  { id: 'alerts', label: 'Alerts' },
                   { id: 'arena', label: 'Arena' }
                 ].map((tab) => {
                   const isActive = activeModalTab === tab.id;
@@ -336,60 +333,49 @@ export default function App() {
                     <button
                       key={tab.id}
                       onClick={() => setActiveModalTab(tab.id)}
-                      className={`h-9 px-3.5 rounded-full font-label-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer shrink-0 font-semibold inline-flex items-center gap-2 select-none ${
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase transition-all cursor-pointer shrink-0 ${
                         isActive
-                          ? 'bg-primary text-on-primary shadow-sm ring-1 ring-primary/40'
-                          : 'bg-surface-container-high/60 border border-surface-container-highest/60 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest'
+                          ? 'bg-black text-white'
+                          : 'bg-[#F3F3F3] text-black hover:bg-[#E2E2E2]'
                       }`}
                     >
-                      {(tab.id === 'gate' || tab.id === 'diff') && (
-                        <span
-                          className={`w-2 h-2 rounded-full shrink-0 ${
-                            isActive
-                              ? 'bg-white'
-                              : tab.id === 'gate'
-                              ? 'bg-primary'
-                              : 'bg-[#38bdf8]'
-                          }`}
-                        />
-                      )}
-                      <span className="whitespace-nowrap leading-none">{tab.label}</span>
+                      {tab.label}
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            {/* TAB 1: CONTROLS */}
+            {/* CONTROLS */}
             {activeModalTab === 'controls' && (
               <div className="flex flex-col gap-3">
-                <div className="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low border border-surface-container-high/60">
-                  <span className="font-label-mono text-label-mono text-outline uppercase">Backend State</span>
-                  <span className="font-label-mono text-label-mono text-primary font-semibold">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-[#F8F8F8] border border-[#E2E2E2]">
+                  <span className="text-xs font-bold uppercase text-[#717171]">Backend State</span>
+                  <span className="text-xs font-bold font-mono text-black">
                     {backendStatus}
                   </span>
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="font-label-mono text-[11px] text-outline uppercase">
-                    Simulation Clock Actions
+                  <label className="text-xs font-bold uppercase text-[#717171]">
+                    Simulation Clock
                   </label>
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleSimClock('start')}
-                      className="flex-1 h-9 rounded bg-surface-container-high hover:bg-primary hover:text-on-primary text-xs font-semibold uppercase font-label-mono transition-colors cursor-pointer"
+                      className="flex-1 py-2 rounded-lg bg-black text-white text-xs font-bold cursor-pointer hover:bg-[#1A1A1A]"
                     >
                       Resume
                     </button>
                     <button
                       onClick={() => handleSimClock('pause')}
-                      className="flex-1 h-9 rounded bg-surface-container-high hover:bg-surface-variant text-xs font-semibold uppercase font-label-mono transition-colors cursor-pointer"
+                      className="flex-1 py-2 rounded-lg bg-[#F3F3F3] text-black border border-[#E2E2E2] text-xs font-bold cursor-pointer hover:bg-[#E2E2E2]"
                     >
                       Pause
                     </button>
                     <button
                       onClick={() => handleSimClock('reset')}
-                      className="flex-1 h-9 rounded bg-surface-container-high hover:bg-surface-variant text-xs font-semibold uppercase font-label-mono transition-colors cursor-pointer"
+                      className="flex-1 py-2 rounded-lg bg-[#F3F3F3] text-black border border-[#E2E2E2] text-xs font-bold cursor-pointer hover:bg-[#E2E2E2]"
                     >
                       Reset
                     </button>
@@ -397,13 +383,13 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="font-label-mono text-[11px] text-outline uppercase">
+                  <label className="text-xs font-bold uppercase text-[#717171]">
                     Load Scenario
                   </label>
                   <select
                     value={selectedScenario}
                     onChange={(e) => handleScenarioChange(e.target.value)}
-                    className="w-full h-9 px-3 rounded bg-surface-container-high text-on-surface border border-surface-container-highest font-body-md text-xs focus:outline-none cursor-pointer"
+                    className="w-full p-2.5 rounded-lg bg-[#F8F8F8] text-black border border-[#E2E2E2] text-xs font-semibold focus:outline-none cursor-pointer"
                   >
                     <option value="demo_5r_3v">demo_5r_3v (5 riders, 3 vehicles)</option>
                     <option value="edge_capacity">edge_capacity (Max load edge case)</option>
@@ -412,42 +398,16 @@ export default function App() {
                   </select>
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <label className="font-label-mono text-[11px] text-outline uppercase">
-                    Dispatch Strategy
-                  </label>
-                  <select
-                    value={selectedStrategy}
-                    onChange={(e) => setSelectedStrategy(e.target.value)}
-                    className="w-full h-9 px-3 rounded bg-surface-container-high text-on-surface border border-surface-container-highest font-body-md text-xs focus:outline-none cursor-pointer"
-                  >
-                    <option value="hybrid">Hybrid (LOUD + OR-Tools / Batch)</option>
-                    <option value="greedy_fcfs">Greedy FCFS</option>
-                    <option value="loud_insertion">LOUD-inspired insertion</option>
-                    <option value="batch_matching">Batch matching</option>
-                  </select>
-                </div>
-
-                {backendState && (
-                  <div className="grid grid-cols-2 gap-2 text-xs font-label-mono bg-surface-container-low p-2.5 rounded-lg border border-surface-container-high/60">
-                    <div>Vehicles: <strong className="text-primary">{backendState.vehicles ? backendState.vehicles.length : 0}</strong></div>
-                    <div>Requests: <strong className="text-primary">{backendState.requests ? backendState.requests.length : 0}</strong></div>
-                    <div>Sim Clock: <strong className="text-on-surface">{Math.floor(backendState.sim_time || 0)}s</strong></div>
-                    <div>Batch Window: <strong className="text-on-surface">{backendState.window ? `${backendState.window.elapsed_s}s` : '0s'}</strong></div>
-                  </div>
-                )}
-
                 <button
                   onClick={handleDispatchRun}
-                  className="w-full h-10 rounded-lg bg-primary text-on-primary font-body-md font-semibold hover:bg-primary-container transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md shadow-primary/20"
+                  className="w-full py-3 rounded-xl bg-black text-white font-bold text-sm hover:bg-[#1A1A1A] transition-all cursor-pointer shadow-md"
                 >
-                  <span className="material-symbols-outlined text-[18px]">bolt</span>
-                  <span>Force Dispatch Run</span>
+                  Force Dispatch Run
                 </button>
               </div>
             )}
 
-            {/* TAB: USP 1 - ZERO-TRUST ROUTE GATE */}
+            {/* TRUST GATE */}
             {activeModalTab === 'gate' && (
               <div className="flex flex-col gap-3">
                 <ZeroTrustGate
@@ -458,146 +418,41 @@ export default function App() {
               </div>
             )}
 
-            {/* TAB: USP 2 - EXPLAINABLE DYNAMIC RE-POOLING & ROUTE DIFF */}
+            {/* ROUTE DIFF */}
             {activeModalTab === 'diff' && (
               <div className="flex flex-col gap-3">
                 <RouteDiffView />
               </div>
             )}
 
-            {/* TAB 2: TRAFFIC */}
+            {/* TRAFFIC */}
             {activeModalTab === 'traffic' && (
-              <div className="flex flex-col gap-3">
-                <span className="font-body-sm text-xs text-on-surface-variant">
-                  Switch active traffic scenario to test congestion ETA updates and delay resilience:
-                </span>
+              <div className="flex flex-col gap-2">
                 {[
-                  { mode: 'NORMAL', label: 'Normal Traffic (1.0x)', desc: 'Standard speed profile' },
-                  { mode: 'FAST', label: 'Fast Traffic (0.8x)', desc: 'Early driver arrivals' },
-                  { mode: 'MODERATE_CONGESTION', label: 'Moderate Congestion (1.25x)', desc: 'Slight transit delay' },
-                  { mode: 'SEVERE_CONGESTION', label: 'Severe Congestion (1.50x)', desc: 'Triggers 50% delay warning' },
-                  { mode: 'SUDDEN_SLOWDOWN', label: 'Sudden Slowdown (2.0x)', desc: 'Heavy bottleneck' }
+                  { mode: 'NORMAL', label: 'Normal Traffic (1.0x)' },
+                  { mode: 'MODERATE_CONGESTION', label: 'Moderate Congestion (1.25x)' },
+                  { mode: 'SEVERE_CONGESTION', label: 'Severe Congestion (1.50x)' }
                 ].map((item) => (
                   <button
                     key={item.mode}
                     onClick={() => handleTrafficChange(item.mode)}
-                    className={`p-2.5 rounded-lg text-left border flex items-center justify-between transition-all cursor-pointer ${
+                    className={`p-3 rounded-xl text-left border flex items-center justify-between cursor-pointer ${
                       trafficMode === item.mode
-                        ? 'bg-primary-container/20 border-primary text-primary'
-                        : 'bg-surface-container-low border-surface-container-high hover:border-surface-variant'
+                        ? 'bg-black text-white border-black'
+                        : 'bg-[#F8F8F8] text-black border-[#E2E2E2]'
                     }`}
                   >
-                    <div>
-                      <div className="font-label-mono text-xs font-semibold">{item.label}</div>
-                      <div className="text-[11px] text-on-surface-variant">{item.desc}</div>
-                    </div>
-                    {trafficMode === item.mode && (
-                      <span className="material-symbols-outlined text-primary text-[18px]">check_circle</span>
-                    )}
+                    <span className="text-xs font-bold">{item.label}</span>
+                    {trafficMode === item.mode && <span className="material-symbols-outlined text-[18px]">check_circle</span>}
                   </button>
                 ))}
               </div>
             )}
 
-            {/* TAB 3: DISTANCE CONFIG */}
-            {activeModalTab === 'distance' && distanceConfig && (
-              <div className="flex flex-col gap-2.5">
-                <span className="font-body-sm text-xs text-on-surface-variant">
-                  Backend-owned distance and pooling limits:
-                </span>
-                <div className="grid grid-cols-2 gap-2 text-xs font-label-mono">
-                  <div className="p-2 rounded bg-surface-container-low border border-surface-container-high/60">
-                    <span className="text-outline block text-[10px]">INITIAL RADIUS</span>
-                    <strong className="text-on-surface">{distanceConfig.initial_search_radius_m} m</strong>
-                  </div>
-                  <div className="p-2 rounded bg-surface-container-low border border-surface-container-high/60">
-                    <span className="text-outline block text-[10px]">MAX RADIUS</span>
-                    <strong className="text-on-surface">{distanceConfig.max_search_radius_m} m</strong>
-                  </div>
-                  <div className="p-2 rounded bg-surface-container-low border border-surface-container-high/60">
-                    <span className="text-outline block text-[10px]">MAX DETOUR</span>
-                    <strong className="text-on-surface">{Math.round(distanceConfig.max_detour_cap * 100)}%</strong>
-                  </div>
-                  <div className="p-2 rounded bg-surface-container-low border border-surface-container-high/60">
-                    <span className="text-outline block text-[10px]">MAX WAIT</span>
-                    <strong className="text-on-surface">{distanceConfig.max_pickup_wait_s} s</strong>
-                  </div>
-                  <div className="p-2 rounded bg-surface-container-low border border-surface-container-high/60">
-                    <span className="text-outline block text-[10px]">VEHICLE CAPACITY</span>
-                    <strong className="text-on-surface">{distanceConfig.vehicle_capacity} seats</strong>
-                  </div>
-                  <div className="p-2 rounded bg-surface-container-low border border-surface-container-high/60">
-                    <span className="text-outline block text-[10px]">BASE FARE</span>
-                    <strong className="text-on-surface">₹{distanceConfig.base_fare_per_km}/km</strong>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* TAB 4: GPS ALERTS */}
-            {activeModalTab === 'alerts' && (
-              <div className="flex flex-col gap-2 max-h-60 overflow-y-auto">
-                <span className="font-body-sm text-xs text-on-surface-variant">
-                  Authoritative location integrity observations:
-                </span>
-                {fraudAlerts.length === 0 ? (
-                  <div className="p-4 text-center text-xs text-on-surface-variant font-label-mono bg-surface-container-low rounded-lg border border-surface-container-high/60">
-                    No active GPS fraud or quarantined observations. Fleet telemetry verified clean.
-                  </div>
-                ) : (
-                  fraudAlerts.map((alert, idx) => (
-                    <div key={idx} className="p-2 rounded bg-surface-container-low border border-error/40 text-xs">
-                      <div className="flex justify-between font-label-mono text-error font-semibold">
-                        <span>{alert.entity_id}</span>
-                        <span>Risk {alert.risk_score}</span>
-                      </div>
-                      <div className="text-[11px] text-on-surface-variant mt-1">{alert.reason}</div>
-                    </div>
-                  ))
-                )}
-              </div>
-            )}
-
-            {/* TAB 5: ARENA */}
-            {activeModalTab === 'arena' && (
-              <div className="flex flex-col gap-2">
-                <button
-                  onClick={handleRunArena}
-                  className="w-full h-9 rounded bg-surface-container-high hover:bg-primary hover:text-on-primary text-xs font-semibold font-label-mono transition-colors cursor-pointer"
-                >
-                  Run Strategy Benchmark on {selectedScenario}
-                </button>
-                {arenaResults && arenaResults.strategies && (
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs font-label-mono border-collapse">
-                      <thead>
-                        <tr className="border-b border-surface-container-high text-outline text-[10px]">
-                          <th className="py-1">Strategy</th>
-                          <th className="py-1">Dist (km)</th>
-                          <th className="py-1">Served</th>
-                          <th className="py-1">Solve</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {arenaResults.strategies.map((st, i) => (
-                          <tr key={i} className="border-b border-surface-container-high/40">
-                            <td className="py-1.5 text-on-surface font-semibold">{st.name}</td>
-                            <td className="py-1.5 text-primary">{st.pooled_km}</td>
-                            <td className="py-1.5">{st.served_pct}%</td>
-                            <td className="py-1.5 text-outline">{st.solve_ms}ms</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-              </div>
-            )}
-
-            <div className="border-t border-surface-container-high pt-2 flex justify-end">
+            <div className="border-t border-[#E2E2E2] pt-3 flex justify-end">
               <button
                 onClick={() => setShowSettingsModal(false)}
-                className="px-4 h-9 rounded-lg bg-surface-container-high text-on-surface font-label-mono text-xs uppercase hover:bg-surface-variant transition-colors cursor-pointer border border-surface-container-highest"
+                className="px-5 py-2 rounded-xl bg-black text-white text-xs font-bold uppercase cursor-pointer"
               >
                 Done
               </button>

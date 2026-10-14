@@ -1,13 +1,13 @@
 import React from 'react';
 
 /**
- * pool-IQ Navigation Bar — Perfectly aligned 4-column responsive layout
+ * Uber PoolIQ Bottom Navigation - Authentic Uber bottom sheet style tabs
  */
 export default function BottomNav({ activeTab, setActiveTab, userRole = 'passenger' }) {
   const passengerTabs = [
     { id: 'pool', label: 'Ride', icon: 'directions_car' },
-    { id: 'journey', label: 'Journey', icon: 'near_me' },
-    { id: 'fairness', label: 'Fairness', icon: 'verified_user' },
+    { id: 'journey', label: 'Activity', icon: 'near_me' },
+    { id: 'fairness', label: 'Vault', icon: 'verified_user' },
     { id: 'routes', label: 'Corridors', icon: 'alt_route' }
   ];
 
@@ -21,7 +21,7 @@ export default function BottomNav({ activeTab, setActiveTab, userRole = 'passeng
   const currentTabs = userRole === 'admin' ? adminTabs : passengerTabs;
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-t border-[#DCDAD4] shadow-sm pb-safe">
+    <nav className="fixed bottom-0 inset-x-0 z-50 bg-white border-t border-[#E2E2E2] shadow-lg pb-safe">
       <div className="grid grid-cols-4 max-w-md mx-auto h-16 px-2 py-1 items-center">
         {currentTabs.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -31,18 +31,18 @@ export default function BottomNav({ activeTab, setActiveTab, userRole = 'passeng
               onClick={() => setActiveTab(tab.id)}
               className={`flex flex-col items-center justify-center h-full w-full rounded-xl transition-all cursor-pointer select-none py-1 ${
                 isActive
-                  ? 'text-[#292B29] font-bold bg-[#E5E8DF] shadow-xs'
-                  : 'text-[#898B84] hover:text-[#292B29] hover:bg-[#F2EFEB]'
+                  ? 'text-black font-bold bg-[#F3F3F3]'
+                  : 'text-[#8F8F8F] hover:text-black hover:bg-[#F8F8F8]'
               }`}
             >
               <span
                 className={`material-symbols-outlined text-[22px] transition-transform ${
-                  isActive ? 'scale-110 text-[#52584A]' : 'text-[#898B84]'
+                  isActive ? 'scale-105 text-black' : 'text-[#8F8F8F]'
                 }`}
               >
                 {tab.icon}
               </span>
-              <span className="font-mono text-[10.5px] uppercase tracking-wider mt-1 whitespace-nowrap leading-none">
+              <span className="font-sans text-[11px] tracking-tight mt-1 whitespace-nowrap leading-none">
                 {tab.label}
               </span>
             </button>
