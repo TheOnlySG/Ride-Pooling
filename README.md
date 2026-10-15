@@ -31,6 +31,32 @@ A few weeks ago, one of us was travelling through Pune, stuck in traffic. Inside
 
 **Existing pooling apps don't fix this.** Each app runs its own closed system — it can only pool its own riders. Fare logic is a black box. The city has no visibility. And no one can prove the split was fair.
 
+### 📰 Real-World Proofs of the Problem
+
+The crisis of solo-occupancy vehicles, lost economic productivity, and metropolitan gridlock across India is backed by hard civic data and investigative journalism:
+
+#### 1. Pune Citizens Losing ₹900 Cr a Month to Traffic Jams: Ajit Pawar Bats for Free Public Transport System
+[![Pune Traffic Congestion - The Indian Express](https://images.indianexpress.com/2026/01/Ajit_0c7e28.jpg)](https://indianexpress.com/article/cities/pune/traffic-jams-ajit-pawar-bats-for-free-public-transport-system-10465789/)
+
+🔗 **Article Link:** https://indianexpress.com/article/cities/pune/traffic-jams-ajit-pawar-bats-for-free-public-transport-system-10465789/  
+> **Key Finding:** Pune citizens hemorrhage **₹900 crore every single month** to traffic jams and wasted fuel. Civic leadership emphasized that road widening alone is failing, requiring structural public transit strengthening, high-density vehicle pooling, and last-mile micro-feeder integration.
+
+---
+
+#### 2. Bengaluru Loses Nearly ₹20,000 Crore Due To Traffic Mess: Study
+[![Bengaluru Traffic Congestion Study - NDTV](https://c.ndtvimg.com/2023-02/jvsvbr0o_bengaluru-traffic-getty_625x300_21_February_23.jpg?im=FeatureCrop,algorithm=dnn,width=1600,height=900)](https://www.ndtv.com/india-news/bengaluru-loses-nearly-rs-20-000-crore-due-to-traffic-related-hindrances-study-4275195)
+
+🔗 **Article Link:** https://www.ndtv.com/india-news/bengaluru-loses-nearly-rs-20-000-crore-due-to-traffic-related-hindrances-study-4275195  
+> **Key Finding:** An extensive urban transit study showed Bengaluru suffers an annual economic drain of **₹19,725 crore ($2.4 Billion)** due to signal delays, slow transit speeds, and single-occupancy cabs clogging peak corridors.
+
+---
+
+#### 3. ₹1.47 Lakh Crore Per Year: Indian Metros Bleed Billions In Traffic Jams
+[![Indian Metros Traffic Hemorrhage - NDTV](https://c.ndtvimg.com/2026-07/ea35sfe4_gurugram-traffic_625x300_07_July_26.jpg?im=FeatureCrop,algorithm=dnn,width=1600,height=900)](https://www.ndtv.com/india-news/rs-1-47-lakh-crore-per-year-indian-metros-bleed-billions-in-traffic-jams-11749982/amp/1)
+
+🔗 **Article Link:** https://www.ndtv.com/india-news/rs-1-47-lakh-crore-per-year-indian-metros-bleed-billions-in-traffic-jams-11749982/amp/1  
+> **Key Finding:** Severe traffic congestion across India's top metropolitan cities bleeds **₹1.47 lakh crore (~$18 Billion) every year** in wasted fuel, toxic emissions, and lost operational hours — proving that real-time algorithmic ride pooling is a critical national economic imperative.
+
 ---
 
 ## 💡 Our Solution: PoolIQ
